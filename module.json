@@ -1,7 +1,7 @@
 {
-  "name": "module",
-  "title": "New Module",
-  "description": "",
+  "name": "fvtt-self-init",
+  "title": "Foundry Token Self Initiative",
+  "description": "TBD",
   "version": "This is auto replaced",
   "library": "false",
   "manifestPlusVersion": "1.0.0",
@@ -9,25 +9,17 @@
   "compatibleCoreVersion": "0.7.9",
   "authors": [
     {
+      "name": "Mikkerlo",
+      "url": "https://github.com/mikkerlo",
+      "discord": "mikkerlo#2228"
+    },
+    {
       "name": "The League of Extraordinary FVTT Developers",
-      "url": "https://github.com/League-of-Foundry-Developers",
-      "discord": "discordID#0001"
+      "url": "https://github.com/League-of-Foundry-Developers"
     }
-  ],
-  "dependencies": [
-
-  ],
-  "conflicts": [
-    
   ],
   "esmodules": [
     "/scripts/module.js"
-  ],
-  "scripts": [
-    "/scripts/lib/lib.js"
-  ],
-  "styles": [
-    "/styles/module.css"
   ],
   "languages": [
     {
