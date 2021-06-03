@@ -8,7 +8,10 @@ Hooks.on("ready", () =>{
             }
 
             let combat = available_combats[0];
-            await Promise.all(combat.combatants.filter(combatan => combatan.token.id == data.token.id).map(c => c.update({initiative: data.initiative})));
+            await Promise.all(
+                combat.combatants
+                .filter(combatan => combatan.token.id == data.token.id)
+                .map(c => c.update({initiative: data.initiative})));
         }
     });
 }); 
@@ -27,10 +30,10 @@ Hooks.on("chatCommandsReady", function(chatCommands) {
         return canvas.tokens.controlled.filter(token => token.owner).map(player_token => {
             game.socket.emit('module.self-player-init', {
                 event: "set-initiative",
-                token: canvas.tokens.controlled.filter(token => token.owner).map(token => ({
-                    id: token.id,
-                    sceneId: token.scene.id,
-                  })),
+                token: {
+                    id: player_token.id,
+                    sceneId: player_token.scene.id,
+                  },
                 initiative: initiative,
             });
         });
