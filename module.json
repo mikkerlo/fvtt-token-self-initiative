@@ -21,6 +21,13 @@
   "esmodules": [
     "/scripts/module.js"
   ],
+  "dependencies": [
+    {
+      "name": "_chatcommands",
+      "type": "module",
+      "manifest": "https://github.com/League-of-Foundry-Developers/Chat-Commands-Lib/releases/download/1.3.3/module.json"
+    }
+  ],
   "languages": [
     {
       "lang": "en",
