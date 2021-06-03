@@ -24,3 +24,4 @@ Link to manifest: `https://github.com/mikkerlo/fvtt-token-self-initiative/releas
 
 ## Changelog
 
+1.0 -- Release first version
