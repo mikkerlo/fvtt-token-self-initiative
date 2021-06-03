@@ -1,7 +1,7 @@
 {
   "name": "self-player-init",
-  "title": "Foundry Token Self Initiative",
-  "description": "TBD",
+  "title": "Self Initiative",
+  "description": "This module allows players to set an initiative to tokens by themself",
   "version": "This is auto replaced",
   "library": "false",
   "manifestPlusVersion": "1.0.0",
