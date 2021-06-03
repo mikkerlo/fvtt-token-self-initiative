@@ -1,5 +1,5 @@
 Hooks.on("ready", () =>{
-    game.socket.on('module.self-token-init', async data => {
+    game.socket.on('module.self-player-init', async data => {
         console.log(data);
         if (game.user.isGM && data.event == "set-initiative") {
             let available_combats = game.combats.filter(combat => combat.scene.id == data.token.sceneId);
@@ -25,7 +25,7 @@ Hooks.on("chatCommandsReady", function(chatCommands) {
             return;
         }
         return canvas.tokens.controlled.filter(token => token.owner).map(player_token => {
-            game.socket.emit('module.self-token-init', {
+            game.socket.emit('module.self-player-init', {
                 event: "set-initiative",
                 token: canvas.tokens.controlled.filter(token => token.owner).map(token => ({
                     id: token.id,
