@@ -27,12 +27,16 @@ Hooks.on("chatCommandsReady", function(chatCommands) {
             console.log("Error while parsing initiative");
             return;
         }
-        
-        let token_list = canvas.tokens.ownedTokens.filter(token => token.inCombat);
-        if (token_list.length != 1) {
-            token_list = canvas.tokens.controlled.filter(token => token.inCombat);
+          
+        let token_list = canvas.tokens.controlled.filter(token => token.inCombat);
+        if (token_list.length == 0) {
+            token_list = canvas.tokens.ownedTokens.filter(token => token.inCombat).filter(c => c.actor.items.filter(item => item.name == "SelfInitIgnore").length > 0);
         }
-
+          
+        if (token_list.length != 1) {
+            return;
+        }
+        
         return token_list.filter(token => token.isOwner).map(player_token => {
             game.socket.emit('module.self-player-init', {
                 event: "set-initiative",
