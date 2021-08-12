@@ -27,7 +27,13 @@ Hooks.on("chatCommandsReady", function(chatCommands) {
             console.log("Error while parsing initiative");
             return;
         }
-        return canvas.tokens.controlled.filter(token => token.owner).map(player_token => {
+        
+        let token_list = canvas.tokens.ownedTokens;
+        if (token_list.length != 1) {
+            token_list = canvas.tokens.controlled;
+        }
+
+        return token_list.filter(token => token.owner).map(player_token => {
             game.socket.emit('module.self-player-init', {
                 event: "set-initiative",
                 token: {
@@ -42,7 +48,7 @@ Hooks.on("chatCommandsReady", function(chatCommands) {
       shouldDisplayToChat: false,
       createdMessageType: 1,
       iconClass: "fa-sticky-note",
-      description: "Set initiative for selected tokens"
+      description: "Set initiative for selected or owned tokens"
     }));
   });
   
