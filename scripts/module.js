@@ -22,7 +22,7 @@ Hooks.on("chatCommandsReady", function(chatCommands) {
       invokeOnCommand: (chatlog, messageText, chatdata) => {
         console.log("Invoked /init");
         console.log(messageText);
-        let initiative = parseInt(messageText);
+        let initiative = parseFloat(messageText);
         if (Number.isNaN(initiative)) {
             console.log("Error while parsing initiative");
             return;
