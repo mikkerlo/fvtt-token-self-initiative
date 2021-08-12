@@ -28,9 +28,9 @@ Hooks.on("chatCommandsReady", function(chatCommands) {
             return;
         }
         
-        let token_list = canvas.tokens.ownedTokens;
+        let token_list = canvas.tokens.ownedTokens.filter(token => token.inCombat);
         if (token_list.length != 1) {
-            token_list = canvas.tokens.controlled;
+            token_list = canvas.tokens.controlled.filter(token => token.inCombat);
         }
 
         return token_list.filter(token => token.owner).map(player_token => {
