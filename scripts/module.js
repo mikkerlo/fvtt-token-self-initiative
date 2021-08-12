@@ -30,7 +30,7 @@ Hooks.on("chatCommandsReady", function(chatCommands) {
           
         let token_list = canvas.tokens.controlled.filter(token => token.inCombat);
         if (token_list.length == 0) {
-            token_list = canvas.tokens.ownedTokens.filter(token => token.inCombat).filter(c => c.actor.items.filter(item => item.name == "SelfInitIgnore").length > 0);
+            token_list = canvas.tokens.ownedTokens.filter(token => token.inCombat).filter(c => c.actor.items.filter(item => item.name == "SelfInitIgnore").length == 0);
         }
           
         if (token_list.length != 1) {
