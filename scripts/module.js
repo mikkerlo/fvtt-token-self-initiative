@@ -33,7 +33,7 @@ Hooks.on("chatCommandsReady", function(chatCommands) {
             token_list = canvas.tokens.controlled.filter(token => token.inCombat);
         }
 
-        return token_list.filter(token => token.owner).map(player_token => {
+        return token_list.filter(token => token.isOwner).map(player_token => {
             game.socket.emit('module.self-player-init', {
                 event: "set-initiative",
                 token: {
