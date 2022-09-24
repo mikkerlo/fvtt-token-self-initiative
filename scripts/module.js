@@ -26,14 +26,24 @@ Hooks.on("chatCommandsReady", chatCommands => chatCommands.registerCommand(
                 return;
             }
 
+            const tokenToCombant = Array.from(game.combats)
+                .flatMap(c => Array.from(c.combatants))
+                .map(c => ({key: c.tokenId, val: c.id}))
+                .reduce((map, obj) => map.set(obj.key, obj.val), new Map)
+
             const initiatives = token_list
                 .filter(token => token.isOwner)
                 .map(player_token => ({
-                    "_id": player_token.id,
+                    "_id": tokenToCombant.get(player_token.id),
                     "initiative": initiative
                 }));
 
-            game.combat.updateEmbeddedDocuments("Combatant", initiatives);
+            try {
+                game.combat.updateEmbeddedDocuments("Combatant", initiatives);
+            } catch (err) {
+                logger.error("Error while trying to update initiatives");
+                logger.error(err);
+            }
         }
     })
 ));
