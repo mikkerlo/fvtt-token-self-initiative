@@ -1,8 +1,8 @@
-name: Release Creation
+name: Release Change
 
 on: 
   release:
-    types: [published]
+    types: [created, edited, published]
 
 jobs:
   build:
