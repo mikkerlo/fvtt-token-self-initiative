@@ -1,12 +1,13 @@
 Hooks.on("chatCommandsReady", chatCommands => chatCommands.registerCommand(
     chatCommands.createCommandFromData({
-        commandKey: "/init",
+        commandKey: "/in",
         invokeOnCommand: (chatlog, messageText, chatdata) => {
-            ui.notifications.debug("[fvtt-token-self-init] Invoked /init");
-            ui.notifications.debug("[fvtt-token-self-init] " + messageText);
+            logger.debug("[fvtt-token-self-init] Invoked /init");
+            logger.debug("[fvtt-token-self-init] " + messageText);
             let initiative = parseFloat(messageText);
             if (Number.isNaN(initiative)) {
-                ui.notifications.error("[fvtt-token-self-init] Error while parsing initiative from chat " + messageText);
+                ui.notifications.error("[fvtt-token-self-init] Error while parsing initiative");
+                logger.error("[fvtt-token-self-init] Error while parsing initiative from chat " + messageText);
                 return;
             }
 
