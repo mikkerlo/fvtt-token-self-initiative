@@ -1,7 +1,14 @@
+function getTokenToCombatantIds() {
+    return Array.from(game.combats)
+        .flatMap(c => Array.from(c.combatants))
+        .map(c => ({key: c.tokenId, val: c.id}))
+        .reduce((map, obj) => map.set(obj.key, obj.val), new Map);
+}
+
 Hooks.on("chatCommandsReady", chatCommands => chatCommands.registerCommand(
     chatCommands.createCommandFromData({
         commandKey: "/init",
-        invokeOnCommand: (chatlog, messageText, chatdata) => {
+        invokeOnCommand: async (chatlog, messageText, chatdata) => {
             logger.debug("[fvtt-token-self-init] Invoked /init");
             logger.debug("[fvtt-token-self-init] " + messageText);
             let initiative = parseFloat(messageText);
@@ -11,37 +18,38 @@ Hooks.on("chatCommandsReady", chatCommands => chatCommands.registerCommand(
                 return;
             }
 
-            let token_list = canvas.tokens.controlled.filter(token => token.inCombat);
-            if (token_list.length == 0) {
-                token_list = canvas.tokens.ownedTokens
-                    .filter(token => token.inCombat)
+            let tokenList = canvas.tokens.controlled
+                .filter(token => token.isOwner);
+
+            if (tokenList.length == 0) {
+                tokenList = canvas.tokens.ownedTokens
                     .filter(c =>
                         c.actor.items
                             .filter(item => item.name == "SelfInitIgnore")
                             .length == 0);
             }
 
-            if (token_list.length != 1) {
+            if (tokenList.length != 1) {
                 ui.notifications.warn("[fvtt-token-self-init] Multipple tokens detected, aborting the operation");
                 return;
             }
 
-            const tokenToCombant = Array.from(game.combats)
-                .flatMap(c => Array.from(c.combatants))
-                .map(c => ({key: c.tokenId, val: c.id}))
-                .reduce((map, obj) => map.set(obj.key, obj.val), new Map)
+            const token = tokenList[0];
 
-            const initiatives = token_list
-                .filter(token => token.isOwner)
-                .map(player_token => ({
-                    "_id": tokenToCombant.get(player_token.id),
-                    "initiative": initiative
-                }));
+            if (!getTokenToCombatantIds().has(token.id)) {
+                await token.toggleCombat();
+            }
+
+            const tokenToCombatant = getTokenToCombatantIds();
+            const updateDocument = {
+                "_id": tokenToCombatant.get(token.id),
+                "initiative": initiative
+            };
 
             try {
-                game.combat.updateEmbeddedDocuments("Combatant", initiatives);
+                await game.combat.updateEmbeddedDocuments("Combatant", [updateDocument]);
             } catch (err) {
-                logger.error("Error while trying to update initiatives");
+                logger.error("Error while trying to update initiative");
                 logger.error(err);
             }
         }
