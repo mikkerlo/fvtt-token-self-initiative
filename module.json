@@ -1,12 +1,14 @@
 {
-  "name": "self-player-init",
+  "id": "self-player-init",
   "title": "Self Initiative",
   "description": "This module allows players to set an initiative to tokens by themself",
   "version": "This is auto replaced",
   "library": "false",
   "manifestPlusVersion": "1.0.0",
-  "minimumCoreVersion": "0.8.8",
-  "compatibleCoreVersion": "0.8.8",
+  "compatibility": {
+    "minimum": 10,
+    "verified": "10.286"
+  },
   "authors": [
     {
       "name": "Mikkerlo",
@@ -21,13 +23,16 @@
   "esmodules": [
     "/scripts/module.js"
   ],
-  "dependencies": [
-    {
-      "name": "_chatcommands",
+  "relationships": {
+    "requires": [{
+      "id": "_chatcommands",
       "type": "module",
-      "manifest": "https://github.com/League-of-Foundry-Developers/Chat-Commands-Lib/releases/download/1.3.3/module.json"
-    }
-  ],
+      "manifest": "https://github.com/League-of-Foundry-Developers/Chat-Commands-Lib/releases/download/1.3.3/module.json",
+      "compatibility": {
+        "verified": "1.3.3"
+      }
+    }]
+  },
   "languages": [
     {
       "lang": "en",
