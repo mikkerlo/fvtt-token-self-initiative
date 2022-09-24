@@ -1,6 +1,6 @@
 Hooks.on("chatCommandsReady", chatCommands => chatCommands.registerCommand(
     chatCommands.createCommandFromData({
-        commandKey: "/in",
+        commandKey: "/init",
         invokeOnCommand: (chatlog, messageText, chatdata) => {
             logger.debug("[fvtt-token-self-init] Invoked /init");
             logger.debug("[fvtt-token-self-init] " + messageText);
