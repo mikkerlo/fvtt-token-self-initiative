@@ -8,9 +8,18 @@
 
 # FoundryVTT Token Self Initiative
 
-This module adds a `/init` command to the foundry chat. So now your players can simply select tokens and enter a command like this: `/init 7` where 7 is desired initiative value.
+This module adds multiple ways to manually change token initiative:
+1. Select token of which initiative you want to change and press I button(can be changed).
+2. Select token of which initiative you want to change and type `/init 7` in chat, where 7 is desired initiative.
+3. Secret way, now in beta.
 
-![Example](readme_files/fvtt-token-self-init-optimize.gif)
+# Examples
+
+## Example with hotkey
+![Example with hotkey](readme_files/fvtt-token-self-init-hotkey.gif)
+
+## Example with chat command
+![Example with chat](readme_files/fvtt-token-self-init-optimize.gif)
 
 ## Installation
 
