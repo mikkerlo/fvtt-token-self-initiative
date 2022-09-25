@@ -1,6 +1,5 @@
-![](https://img.shields.io/badge/Foundry-v0.8.8-informational)
-<!--- Downloads @ Latest Badge -->
-<!--- replace <user>/<repo> with your username/repository -->
+![](https://img.shields.io/badge/Foundry-v10-informational)
+![Total Download Count](https://img.shields.io/github/downloads/mikkerlo/fvtt-token-self-initiative/total)
 ![Latest Release Download Count](https://img.shields.io/github/downloads/mikkerlo/fvtt-token-self-initiative/latest/module.zip)
 
 <!--- Forge Bazaar Install % Badge -->
