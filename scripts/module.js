@@ -148,8 +148,8 @@ Hooks.on("chatCommandsReady", chatCommands => chatCommands.registerCommand(
 
 Hooks.on("init", () => {
     game.settings.register("self-player-init", "replaceRollInitBtn", {
-        name: "Replace roll initiative button",
-        hint: "Replace roll initiative button to custom one, with it players can enter their initiative values.",
+        name: "[Beta] Replace roll initiative button",
+        hint: "Replace roll initiative button to custom one, with it players can enter their initiative values. Use with caution",
         scope: "client",     // "world" = sync to db, "client" = local storage
         config: true,
         type: Boolean,
