@@ -86,7 +86,7 @@ function getAllowedSelectedToken() {
 }
 
 function changeRollInitiativeButtonToCustom() {
-    if (game.combat.getFlag("self-player-init", "changed")) {
+    if (!game.combat.getFlag("self-player-init", "changed")) {
         game.combat.rollInitiativeOld = game.combat.rollInitiative;
         game.combat.setFlag("self-player-init", "changed", true)
     }
