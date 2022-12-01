@@ -50,7 +50,8 @@ function createDialog(combatantId, enableAlternative=true) {
                     }
                 }
             }
-        }
+        },
+        default: 'setInitiative'
     };
     if (enableAlternative) {
         dialogData.buttons.default = {
@@ -58,6 +59,7 @@ function createDialog(combatantId, enableAlternative=true) {
             label: "I want to do a default roll",
             callback: c => game.combat.rollInitiativeOld([combatantId])
         };
+        dialogData.default = 'default'
     }
     let dialog = new Dialog(dialogData);
     dialog.render(true);
