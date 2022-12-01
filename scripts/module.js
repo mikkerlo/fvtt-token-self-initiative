@@ -22,7 +22,7 @@ async function updateInitiative(combatantId, initiative) {
 function createDialog(combatantId, enableAlternative=true) {
     let dialogData = {
         title: "Self Initiative",
-        content: "What is your initiative? <input type='number' class='initiativeValue'></input>",
+        content: "<p>What is your initiative? <input type='number' class='initiativeValue' autofocus></input></p>",
         buttons: {
             setInitiative: {
                 icon: '<i class="fas fa-check"></i>',
