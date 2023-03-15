@@ -22,7 +22,7 @@ async function updateInitiative(combatantId, initiative) {
 function createDialog(combatantId, enableAlternative=true) {
     let dialogData = {
         title: "Self Initiative",
-        content: "What is your initiative? <input type='number' class='initiativeValue'></input>",
+        content: "<p>What is your initiative? <input type='number' class='initiativeValue' autofocus></input></p>",
         buttons: {
             setInitiative: {
                 icon: '<i class="fas fa-check"></i>',
@@ -50,7 +50,8 @@ function createDialog(combatantId, enableAlternative=true) {
                     }
                 }
             }
-        }
+        },
+        default: 'setInitiative'
     };
     if (enableAlternative) {
         dialogData.buttons.default = {
@@ -58,6 +59,7 @@ function createDialog(combatantId, enableAlternative=true) {
             label: "I want to do a default roll",
             callback: c => game.combat.rollInitiativeOld([combatantId])
         };
+        dialogData.default = 'default'
     }
     let dialog = new Dialog(dialogData);
     dialog.render(true);
@@ -84,7 +86,7 @@ function getAllowedSelectedToken() {
 }
 
 function changeRollInitiativeButtonToCustom() {
-    if (game.combat.getFlag("self-player-init", "changed")) {
+    if (!game.combat.getFlag("self-player-init", "changed")) {
         game.combat.rollInitiativeOld = game.combat.rollInitiative;
         game.combat.setFlag("self-player-init", "changed", true)
     }
